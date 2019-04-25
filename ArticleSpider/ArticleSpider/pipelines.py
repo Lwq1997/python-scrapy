@@ -7,6 +7,7 @@
 import codecs
 import json
 
+import MySQLdb
 from scrapy.exporters import JsonItemExporter
 from scrapy.pipelines.images import ImagesPipeline
 
@@ -43,6 +44,22 @@ class JsonExporterPipleline(object):
 
     def process_item(self, item, spider):
         self.exporter.export_item(item)
+        return item
+
+
+class MysqlPipeline(object):
+    #采用同步的机制写入mysql
+    def __init__(self):
+        self.conn = MySQLdb.connect('127.0.0.1', 'root', '123456', 'scrapyspider', charset="utf8", use_unicode=True)
+        self.cursor = self.conn.cursor()
+
+    def process_item(self, item, spider):
+        insert_sql = """
+            insert into jobbole_article(title, url, create_date, fav_nums)
+            VALUES (%s, %s, %s, %s)
+        """
+        self.cursor.execute(insert_sql, (item["title"], item["url"], item["create_date"], item["fav_nums"]))
+        self.conn.commit()
         return item
 
 
