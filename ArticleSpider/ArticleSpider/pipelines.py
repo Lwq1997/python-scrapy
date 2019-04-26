@@ -33,7 +33,7 @@ class JsonWithEncodingPipeline(object):
         self.file.close()
 
 
-class JsonExporterPipleline(object):
+class JsonExporterPipeline(object):
     # 调用scrapy提供的json export导出json文件
     def __init__(self):
         self.file = open('articleexport.json', 'wb')
@@ -66,7 +66,8 @@ class MysqlPipeline(object):
         return item
 
 
-class MysqlTwistedPipline(object):
+class MysqlTwistedPipeline(object):
+    # 采用异步的机制写入mysql
     def __init__(self, dbpool):
         self.dbpool = dbpool
 
@@ -105,12 +106,14 @@ class MysqlTwistedPipline(object):
                     VALUES (%s, %s, %s, %s, %s)
                 """
         cursor.execute(insert_sql,
-                            (item["title"], item["url"], item["create_date"], item["fav_nums"], item["url_object_id"]))
+                       (item["title"], item["url"], item["create_date"], item["fav_nums"], item["url_object_id"]))
 
 
-class ArticleImagePipoline(ImagesPipeline):
+class ArticleImagePipeline(ImagesPipeline):
+    # 下载图片的pipeline
     def item_completed(self, results, item, info):
-        for ok, value in results:
-            image_file_path = value['path']
-        item['front_image_path'] = image_file_path
+        if 'front_image_url' in item:
+            for ok, value in results:
+                image_file_path = value['path']
+            item['front_image_path'] = image_file_path
         return item

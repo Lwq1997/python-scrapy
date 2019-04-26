@@ -5,6 +5,9 @@
 # IntelliJ project files
 .idea
 *.iml
+images
+article.json
+articleexport.json
 out
 gen### Python template
 # Byte-compiled / optimized / DLL files
