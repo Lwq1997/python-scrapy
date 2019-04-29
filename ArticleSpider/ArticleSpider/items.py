@@ -93,3 +93,16 @@ class JobBoleArticleItem(scrapy.Item):
                   self["content"])
 
         return insert_sql, params
+
+
+class JingDong(scrapy.Item):
+    goods_id = scrapy.Field()
+    goods_title = scrapy.Field()
+    goods_url = scrapy.Field()
+    goods_img = scrapy.Field()
+    goods_price = scrapy.Field()
+    goods_shop = scrapy.Field()
+    goods_icon = scrapy.Field()
+    goods_time = scrapy.Field()
+    goods_brand = scrapy.Field()
+    goods_describe = scrapy.Field()
