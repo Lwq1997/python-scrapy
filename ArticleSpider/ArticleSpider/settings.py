@@ -68,8 +68,8 @@ ITEM_PIPELINES = {
     # # 'scrapy.pipelines.images.ImagesPipeline': 1,
     # 'ArticleSpider.pipelines.ArticleImagePipeline': 1,
     # 'ArticleSpider.pipelines.JsonExporterPipeline': 2,
-    # 'ArticleSpider.pipelines.MysqlTwistedPipeline': 3,
-    'ArticleSpider.pipelines.SmartcranehubPipeline': 1,
+    'ArticleSpider.pipelines.MysqlTwistedPipeline': 3,
+    # 'ArticleSpider.pipelines.SmartcranehubPipeline': 1,
 }
 IMAGES_URLS_FIELD = 'front_image_url'
 project_dir = os.path.abspath(os.path.dirname(__file__))
@@ -100,3 +100,6 @@ MYSQL_HOST = "127.0.0.1"
 MYSQL_DBNAME = "scrapyspider"
 MYSQL_USER = "root"
 MYSQL_PASSWORD = "123456"
+
+SQL_DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S"
+SQL_DATE_FORMAT = "%Y-%m-%d"

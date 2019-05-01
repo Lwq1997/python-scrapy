@@ -278,5 +278,5 @@ onclick="searchlog(1,0,39,71,'品牌::格力高')" title="格力高"><i></i>格�
 #     print(goods_url)
 
 ji = JingDong()
-print(isinstance([1,2,3],list))
-print(isinstance(ji,JingDong))
+print(isinstance([1, 2, 3], list))
+print(isinstance(ji, JingDong))
