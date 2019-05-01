@@ -5,13 +5,11 @@
 # IntelliJ project files
 .idea
 *.iml
-images
-article.json
-articleexport.json
-captcha.jpg
+*.json
+*.jpg
 cookies.txt
 index_page.html
-comments.csv
+*.csv
 out
 gen### Python template
 # Byte-compiled / optimized / DLL files
